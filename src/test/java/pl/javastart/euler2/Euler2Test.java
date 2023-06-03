@@ -6,9 +6,10 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 class Euler2Test {
+    private Euler2 euler2 = new Euler2();
+
     @Test
     public void shouldThrowExceptionForNegativeNumbers() {
-        Euler2 euler2 = new Euler2();
         assertThatThrownBy(() -> euler2.sumOfEvenNumbers(-1))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("Value cannot be less than zero");
@@ -16,7 +17,6 @@ class Euler2Test {
 
     @Test
     public void shouldReturn0EvenFibonacciSumFor0() {
-        Euler2 euler2 = new Euler2();
         int sum = euler2.sumOfEvenNumbers(0);
         Assertions.assertThat(sum)
                 .as("Fibonacci sum for 0")
@@ -25,7 +25,6 @@ class Euler2Test {
 
     @Test
     public void shouldReturn0EvenFibonacciSumFor1() {
-        Euler2 euler2 = new Euler2();
         int sum = euler2.sumOfEvenNumbers(1);
         Assertions.assertThat(sum)
                 .as("Fibonacci sum for 1")
@@ -33,11 +32,18 @@ class Euler2Test {
     }
 
     @Test
-    public void shouldReturn0EvenFibonacciSumFor40_000_000() {
-        Euler2 euler2 = new Euler2();
-        int sum = euler2.sumOfEvenNumbers(40_000_000);
+    public void shouldReturn0EvenFibonacciSumFor1_000_000() {
+        int sum = euler2.sumOfEvenNumbers(1_000_000);
+        Assertions.assertThat(sum)
+                .as("Fibonacci sum for 1 000 000")
+                .isEqualTo(1_089_154);
+    }
+
+    @Test
+    public void shouldReturn0EvenFibonacciSumFor4_000_000() {
+        int sum = euler2.sumOfEvenNumbers(4_000_000);
         Assertions.assertThat(sum)
                 .as("Fibonacci sum for 40 000 000")
-                .isEqualTo(1_954_858_638);
+                .isEqualTo(4_613_732);
     }
 }
